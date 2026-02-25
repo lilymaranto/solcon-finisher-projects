@@ -52,5 +52,5 @@ function trackEvent(name, properties = {}) {
 
 ### Keep it simple
 - No extra sync buses/wrapper layers unless explicitly requested.
-- Reuse `solcon-finisher/sync_state_reference.js` instead of inventing new sync rules.
+- Reuse `Downloads/solcon-finisher-projects-main/sync_state_reference.js` instead of inventing new sync rules.
 
