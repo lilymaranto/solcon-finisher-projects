@@ -1,9 +1,7 @@
 # SolCon Prompt (Projects Folder Layout)
 
 ## Prompt to give SolCon/AI builder
-Use `Downloads/solcon-finisher-projects-main/SOLCON_PROMPT_PROJECTS.md` and the files in its "Must-use references" section to alter this existing codebase for native app-container compatibility while preserving all currently working user-facing functionality. Do not redesign UI unless explicitly requested. Apply only the identity/session sync and custom-event forwarding rules below, then return files changed, rationale per change, and validation results.
-
-Use this file to alter an existing web app so it works safely inside the DemoBrazeAIApp native container. This is finisher mode: patch existing code only. Preserve all existing user-facing functionality and current UI behavior. Only restructure identity/session sync and custom-event forwarding.
+Use `solcon-finisher-projects/SOLCON_PROMPT_PROJECTS.md` and the files in its "Must-use references" section to alter this existing codebase for native app-container compatibility while preserving all currently working user-facing functionality. Do not redesign UI unless explicitly requested. Apply only the identity/session sync and custom-event forwarding rules below, then return files changed, rationale per change, and validation results.
 
 ## Quick execution brief (do this first)
 - Finisher mode only: do not scaffold or redesign the app architecture.
@@ -21,18 +19,18 @@ Use this file to alter an existing web app so it works safely inside the DemoBra
 6) Validate against all acceptance checks and report results.
 
 ## File placement rules (required)
-- Copy `Downloads/solcon-finisher-projects-main/demo_bridge_entry.js` into the target app codebase (for example `src/bridge/demo_bridge_entry.js`) and rewire app code to use it.
-- Copy `Downloads/solcon-finisher-projects-main/sync_state_reference.js` into the target app codebase (for example `src/bridge/sync_state_reference.js`) and use it as the reducer/state pattern reference.
+- Copy `solcon-finisher-projects/demo_bridge_entry.js` into the target app codebase (for example `src/bridge/demo_bridge_entry.js`) and rewire app code to use it.
+- Copy `solcon-finisher-projects/sync_state_reference.js` into the target app codebase (for example `src/bridge/sync_state_reference.js`) and use it as the reducer/state pattern reference.
 - If these files already exist in the target app, compare against the canonical versions and make only minimal patches needed for parity.
 - Do not re-invent or rename DemoBridge methods; preserve the canonical contract shape exactly.
 - Replace existing file content when patching; never append duplicate file blocks.
 
 ## Must-use references
-- `Downloads/solcon-finisher-projects-main/SOLCON_PROMPT_PROJECTS.md` (this file)
-- `Downloads/solcon-finisher-projects-main/README.md`
-- `Downloads/solcon-finisher-projects-main/VALIDATION.md`
-- `Downloads/solcon-finisher-projects-main/sync_state_reference.js`
-- `Downloads/solcon-finisher-projects-main/demo_bridge_entry.js`
+- `solcon-finisher-projects/SOLCON_PROMPT_PROJECTS.md` (this file)
+- `solcon-finisher-projects/README.md`
+- `solcon-finisher-projects/VALIDATION.md`
+- `solcon-finisher-projects/sync_state_reference.js`
+- `solcon-finisher-projects/demo_bridge_entry.js`
 
 ## Non-negotiables
 - Focus on stable identity/session sync + event forwarding only.
