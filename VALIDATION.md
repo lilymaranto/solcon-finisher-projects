@@ -37,6 +37,16 @@
 8) File integrity check
 - Open each modified file once after patching.
 - Pass: file contains one implementation block only (no accidental concatenated duplicates).
+- If hardened files changed intentionally, regenerate `integrity-manifest.json` and confirm hash checks no longer report drift for those files.
+
+9) Native identity double-write guard
+- Trigger one web manual user switch while running in native container mode.
+- Pass: identity/session write path executes once (no duplicate direct Braze + bridge identity writes in same native branch).
+
+10) Iframe embedding check
+- Pass: preview route can be embedded from `https://doppel-dashboard-staging-a7496acff9c6.herokuapp.com/`.
+- Pass: preview response is not blocked by deployment protection (`401/403`).
+- Pass: preview response does not include iframe-blocking policy for intended routes (`X-Frame-Options: DENY` or restrictive `frame-ancestors`).
 
 ## If it fails
 - Duplicate `startWebSession` calls.
@@ -47,6 +57,7 @@
 - Custom events not centralized in `trackEvent`.
 - `trackEvent` skips Braze SDK logging.
 - Additional helpers were added to `demo_bridge_entry.js`.
+- Native branch executes both direct Braze identity writes and `DemoBridge.startSession(...)` without environment gating.
 - Duplicate native Event Log entries caused by hook-forwarding plus explicit bridge dual-write without dedupe.
 - App-specific bridge method names diverge from canonical `DemoBridge` contract.
 - Native `detail` metadata dropped before reducer (`reason/authority/sessionId/configId` missing).

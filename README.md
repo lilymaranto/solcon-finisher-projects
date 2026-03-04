@@ -19,6 +19,8 @@ Use this as the standalone SolCon sync/event contract. Keep existing product fun
 - Keep `demo_bridge_entry.js` identity-only; do not add any additional helpers there.
 - Default custom-event path: `trackEvent` calls `braze.logCustomEvent(...)`; native Event Log visibility comes from the container's Braze custom-event hook.
 - Use explicit bridge + Braze dual-write only when no native hook exists, and add dedupe to avoid duplicate native Event Log entries.
+- Avoid native double identity writes: if `DemoBridge.startSession(...)` already performs `braze.changeUser/openSession` in container mode, do not also call direct Braze identity writes in the same native branch.
+- After intentional edits to hardened runtime files, regenerate `integrity-manifest.json` immediately so hash protection reflects the new approved baseline.
 
 ### Canonical DemoBridge contract (shared for all SolCons)
 Do not invent custom bridge names or payload shapes per app. Use this contract for every generated site.
@@ -52,5 +54,10 @@ function trackEvent(name, properties = {}) {
 
 ### Keep it simple
 - No extra sync buses/wrapper layers unless explicitly requested.
-- Reuse `Downloads/solcon-finisher-projects-main/sync_state_reference.js` instead of inventing new sync rules.
+- Reuse `solcon-finisher-projects-main/sync_state_reference.js` instead of inventing new sync rules.
+
+### Iframe compatibility note
+- Preview-capable routes should allow iframe embedding from:
+  - `https://doppel-dashboard-staging-a7496acff9c6.herokuapp.com/`
+- Keep this route-scoped and avoid disabling frame protections globally.
 
