@@ -37,12 +37,12 @@ export function setUser(userId, reason = "manual") {
 
 export function listenForNative(changeUserFn) {
   if (typeof changeUserFn !== "function") {
-    throw new Error("listenForNative requires changeUserFn(userId)");
+    throw new Error("listenForNative requires changeUserFn(userId, detail)");
   }
   if (!hasBridge() || !window.DemoBridge?.initNativeListener) return;
   window.DemoBridge.initNativeListener((incomingUserId, detail) => {
     if (!incomingUserId) return;
-    changeUserFn(incomingUserId);
-    // Optional: log or surface detail.reason / detail.sessionId / detail.configId
+    changeUserFn(incomingUserId, detail);
+    // detail.reason / detail.sessionId / detail.configId available to caller
   });
 }

@@ -14,7 +14,7 @@ Use this as the standalone SolCon sync/event contract. Keep existing product fun
 - Register native listener once.
 - Route all user changes (UI + native) through one apply/reducer path.
 - Add dedupe + native echo suppression.
-- Add short manual lock window (2-5s) so `default` cannot override a recent `manual` change.
+- Add manual lock window exactly `300ms` so `default` cannot override a recent `manual` change.
 - Route all custom events through one `trackEvent(name, properties)` helper.
 - Keep `demo_bridge_entry.js` identity-only; do not add any additional helpers there.
 - Default custom-event path: `trackEvent` calls `braze.logCustomEvent(...)`; native Event Log visibility comes from the container's Braze custom-event hook.
